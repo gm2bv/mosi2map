@@ -13,7 +13,7 @@ class Event(models.Model):
         return str(self.lat) + ' ' + str(self.lng)
 
 
-class mlist(models.Model):
+class Mlist(models.Model):
     event = models.ForeignKey('Event')
     mail = models.CharField(max_length = 256)
     created_at = models.DateTimeField(auto_now = False, auto_now_add = True)
@@ -22,12 +22,12 @@ class mlist(models.Model):
         return self.mail
 
 
-class chat(models.Model):
+class Chat(models.Model):
     event = models.ForeignKey('Event')
     message = models.CharField(max_length = 500)
     created_at = models.DateTimeField(auto_now = False, auto_now_add = True)
 
     def __str__(self):
-        return str(created_at) + ':' + message
+        return str(self.created_at) + ':' + self.message
 
 

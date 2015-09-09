@@ -1,0 +1,21 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="{{ LANGUAGE_CODE|default:"en-us" }}">
+  <head>
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <title>{% block title %}mosi2map{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'css/reset.css' %}" />
+    <link rel="stylesheet" href="{% static 'js/jquery-ui-1.11.4/jquery-ui.css' %}" />
+    <link rel="stylesheet" href="{% static 'typicons/typicons.min.css' %}" />
+
+    <script type="text/javascript" src="{% static 'js/jquery-1.11.3.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/jquery-ui-1.11.4/jquery-ui.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/gmap.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/main.js' %}"></script>
+  </head>
+  <body>
+    {% block content %}
+        {{ content }}
+    {% endblock %}
+  </body>
+</html>

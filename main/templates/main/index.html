@@ -1,0 +1,80 @@
+{% extends "base.html" %}
+{% block title %}mosi2map スタートページ{% endblock title %}
+
+{% block content %}
+<section class="KkkoiTop">
+  <div class="Notice">
+    イベントを投稿してください
+  </div>
+  <div class="MapBlock">
+    <div class="MapSearch">
+      <input type="text" class="TextForm" id="searchMapText" placeholder="地名検索">
+      <button class="SearchBtn" id="searchMapBtn"><span class="typcn typcn-zoom"></span></button>
+    </div>
+
+    <div class="Gmap">
+      <div id="map_canvas" <% if($lat && $lng){ %>data-lat="<%= $lat %>" data-lng="<%= $lng %>"<% } %>></div>
+    </div>
+  </div> <!-- MapBlock -->
+  
+%= form_for confirm => (id=>'notifyForm') => (class=>'NotifyForm') => (method=>'post') => begin
+  <dl class="Information">
+    <dt class="Deadline">日時</dt>
+    <dd>
+        % if($dlDate){
+        %= text_field 'dlDate' => $dlDate, id=>'deadlineYMD'
+        % }else{
+        %= text_field 'dlDate', id=>'deadlineYMD'
+        % }
+
+        % my @hours;
+        % my $i=0;while($i < 24){ if( $dlHour && ($dlHour - $i) == 0 ){ push @hours, [$i=>$i,selected=>'selected']; }else{ push @hours, $i; } $i++; }
+        %= select_field dlHour => [['--'=> -1], @hours], id=>'hour'
+        :
+        % my @mins;
+        % my $j=0;while($j  < 60){ if( $dlMin && ($dlMin - $j) == 0 ){ push @mins, [$j=>$j,selected=>'selected']; }else{ push @mins, $j; } $j+=5; }
+        %= select_field dlMin => [@mins], id=>'min'
+
+    </dd>
+    <dt class="Term">時間</dt>
+    <dd>
+      %= select_field term => $terms, id=>'term'
+    </dd>
+    <dt class="Targets">通知先</dt>
+    <dd>
+      <ul id="targets" class="Targets">
+        % if (@$targets > 0) {
+        %  my $err = validation->error('targets');
+        %   for my $t (@$targets) {
+        <li>
+          <input type="email" name="targets"  value="<%= $t %>" <% if($err){ %>class="field-with-error"<% } %> >
+          %   if( $targets->[0] ne $t ){
+          <button class="DelMail">Del</button>
+          %   }
+        </li>
+        %   }
+        % }else {
+        <li>
+          %= email_field 'targets', size=>40
+        </li>
+        % }
+        <li class="Ctrl"><button id="addTarget"><span class="typcn typcn-plus"></span>通知先追加</button></li>
+      </ul>
+    </dd>
+    <dt class="Message">メッセージ</dt>
+    <dd>
+      % if($message){
+      %= text_area 'message' => $message, class=>'Message', rows=>3
+      % }else{
+      %= text_area 'message', class=>'Message', rows=>3
+      % }
+    </dd>
+    <dd class="Ctrl">
+      %= submit_button '投稿', onClick => 'return takeMarker()'
+    </dd>
+  </dl>
+% end
+</section>
+{% endblock %}
+
+
