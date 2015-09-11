@@ -1,0 +1,566 @@
+$margin-wd : 10px;
+$radius-wd : 5px;
+$border-clr : #aaa;
+$blue-line : #aaf;
+$main-clr: #8fbc8f;
+$main-fclr: #fff0f5;
+
+@mixin round-corner($radius){
+    -webkit-border-radius : $radius;
+    -moz-border-radius :    $radius;
+    -ms-border-radius :     $radius;
+    border-radius :         $radius;
+}
+
+@mixin clearfix() {
+    &:after,&:before{
+        display: table;
+        content: "";
+        line-height: 0;
+    }
+    &:after{
+        clear: both;
+    }
+}
+
+@mixin button-look(){
+    background-color: #2e8b57;
+    color: #fff;
+    font-size: 14pt;
+    line-height: 1.0em;
+    padding: 2px;
+    @include round-corner(5px);
+}
+
+html{
+    height: 100%;
+}
+body{
+    height: 100%;
+}
+
+label.field-with-error{
+    color: #f00;
+}
+input.field-with-error{
+    background-color: #fd9e7e;
+}
+textarea.field-with-error{
+    background-color: #fd9e73;
+}
+
+#modal_bk{
+    background-color: #000;
+    color: #fff;
+    filter: alpha(opacity=60);
+    -moz-opacity: 0.6;
+    opacity: 0.6;
+    z-index: 100;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    position: fixed;
+    top: 0;
+    left: 0;
+    .CenterMiddle{
+        positoin: absolute;
+        top: 50%;
+        left: 50%;
+        text-align: center;
+    }
+}
+
+#map_canvas{
+    width: 100%;
+    height: 100%;
+}
+  
+.Header{
+    margin-bottom: $margin-wd * 2;
+    padding: $margin-wd;
+    color: $main-fclr;
+    background-color: $main-clr;
+    border-bottom: 5px double $main-fclr;
+    .Title{
+        float: left;
+        font-size: 38px;
+        line-height: 1.2em;
+        font-weight: bold;
+        a{
+            color: $main-fclr;            
+        }
+    }
+    .Links{
+        float: right;
+        font-size: 20pt;
+        line-height: 1.0em;
+        a{
+            color: #fff;
+        }
+    }
+    @include clearfix();
+}
+
+.Footer{
+    clear: both;
+    font-size: 9pt;
+    text-align: center;
+    background-color: $main-clr;
+    color: $main-fclr;
+    padding: $margin-wd;
+    margin-top: 50px;
+}
+
+
+.KkkoiTop,.KkkoiConfirm,.KkkoiRegist,.KkkoiEvent{
+    .Notice{
+        font-weight: bold;
+        font-size: 18px;
+        color: #555;
+        margin-bottom: $margin-wd;
+    }
+
+    .MapBlock{
+        .MapSearch{
+            margin-bottom: 3px;
+            input.TextForm{
+                @include round-corner($radius-wd);
+            }
+            button.SearchBtn{
+                float: right;
+                width: 40px;
+                @include button-look();
+            }
+            @include clearfix();
+        }
+        .Gmap{
+            box-sizing: border-box;
+            margin-bottom: $margin-wd;
+            border: 1px solid #aaa;
+            background-color: #fff;
+        }
+    }
+
+    dl.Information{
+        dt{
+            font-weight: bold;
+            margin-bottom: $margin-wd;
+        }
+        dt.Deadline {
+            float: left;
+            width: 60px;
+            +dd{
+                margin-left: 60px;
+                input{
+                    @include round-corner(5px);
+                }
+            }
+        }
+        dt.Message + dd{
+            textarea.Message{
+                width: 100%;
+                padding: 2px;
+                margin-bottom: $margin-wd;
+                border-color: $border-clr;
+                @include round-corner(5px);
+            }
+        }
+        dt.Term{
+            float: left;
+            width: 60px;
+            +dd{
+                margin-left: 60px;
+            }
+
+        }
+        dt.Targets {
+            float: left;
+            width: 60px;
+            + dd{
+                margin-left: 60px;
+                ul.Targets{
+                    list-style: none;
+                    li{
+                        margin-bottom: 0;
+                        &:last-child{
+                            margin-bottom: 0;
+                        }
+                        &.Ctrl{
+                            button{
+                                font-size: 10pt;
+                                @include round-corner($radius-wd);                                
+                            }
+                        }
+
+                        input[type=email]{
+                            @include round-corner($radius-wd);
+                            border-color: $border-clr;
+                            width: 310px;
+                            +button.DelMail{
+                                width: 28px;
+                                font-size: 14pt;
+                                padding: 2px 0;
+                                line-height: 1.0em;
+                                margin-left: 2px;
+                                @include round-corner($radius-wd);
+                            }
+                        }
+                    }
+                }
+            }
+        } // dt.Targets
+        dd.Ctrl{
+            input[type=submit]{
+                width: 100%;
+                @include button-look();
+                padding: 5px;
+                &.Cancel{
+                    margin-top: $margin-wd;
+                    background-color: #fff;
+                    color: #888;
+                }
+            }
+        }
+    }  // dl.Information
+    .Ctrl{
+        clear: both;
+    }
+}
+.KkkoiTop{
+  dl.Information{
+    dt.Deadline + dd{
+      select.Disabled{
+          background-color: #ddd;
+          border-color: $border-clr - #111;
+      }
+    }
+  }
+}
+.KkkoiConfirm{
+}
+.KkkoiEvent{
+}
+.Chat{
+    .Subject{
+        font-weight: bold;
+    }
+    .ChatView{
+        ul{
+            list-style: none;
+            background-color: #fff;
+            padding: $margin-wd;
+            border: 3px solid $border-clr;
+            @include round-corner(5px);
+            height: 100px;
+            overflow: scroll;
+            box-sizing: border-box;
+            li{
+                font-size: 10pt;
+                .Message{
+                    margin-left: $margin-wd;
+                }
+            }
+        }
+    }
+}
+
+.ChatPostForm{
+    input.ChatMessage{
+        @include round-corner($radius-wd);
+        
+    }
+    button{
+        @include button-look();
+    }
+}
+        
+
+@media screen and (min-width: 801px) {
+    .KkkoiTop,.KkkoiConfirm,.KkkoiRegist,.KkkoiEvent{
+        margin: $margin-wd * 3;
+        .MapBlock{
+            width: 400px;
+            float: left;
+            .MapSearch{
+                input.TextForm{
+                    width: 356px;
+                }
+            }
+            .Gmap{
+                width: 100%;
+                height: 300px;
+                padding: 0;
+            }
+        }
+        .MobileTabMenu{
+            display: none;
+        }
+        dl.Information{
+            width: 400px - $margin-wd;
+            float: left;
+            margin-left: $margin-wd;
+            margin-bottom: 0;
+            
+            dt.Deadline +dd{
+                input{
+                    width: 200px - $margin-wd;
+                }
+                select{
+                    width: 60px;
+                }
+            }
+            dt.Confirm{
+                padding-top: 10px;
+                + dd{
+                    border: 2px solid $border-clr + #111;
+                    padding: $margin-wd;
+                    background-color: #fff;
+                    @include round-corner(5px);
+                }
+            }
+        }
+    } // .KkkoiTop,.KkkoiConfirm,.KkkoiRegist,.KkkoiEvent
+
+    .KkkoiEvent{
+        .Chat{
+            clear: both;
+            width: 800px;
+            .ChatView{
+                .ChatPostForm{
+                    input[type=text]{
+                        width: 755px;
+                    }
+                    margin-bottom: $margin-wd / 2;
+                    width: 100%;
+                    input[type=text]{
+                        @include round-corner(5px);
+                        border-color: $border-clr;
+                        margin: 0;
+                    }
+                    button{
+                        float: right;
+                        margin:0;
+                        width: 40px;
+                        @include button-look();
+                    }
+                }
+            }
+        }
+    } // .KkkoiEvent
+}
+
+@media screen and (min-width: 421px) and (max-width: 801px) {
+    .KkkoiTop,.KkkoiConfirm,.KkkoiRegist,.KkkoiEvent{
+        margin: $margin-wd * 3;
+        .MapBlock{
+            width: 400px;
+            .MapSearch{
+                width: 100%;
+                input.TextForm{
+                    width: 356px;
+                }
+            }
+            .Gmap{
+                width: 100%;
+                height: 300px;
+                padding: 0;
+            }
+        }
+        .MobileTabMenu{
+            display: none;
+        }
+        dl.Information{
+            width: 400px;
+            margin-bottom: 0;
+            dt.Deadline +dd{
+                input{
+                    width: 200px;
+                }
+                select{
+                    width: 60px;
+                }
+            }
+            dt.Confirm{
+                padding-top: 10px;
+                + dd{
+                    border: 2px solid $border-clr + #111;
+                    padding: $margin-wd;
+                    background-color: #fff;
+                    @include round-corner(5px);
+                }
+            }
+        }
+    }  // .KkkoiTop,.KkkoiConfirm,.KkkoiRegist,.KkkoiEvent
+
+    .KkkoiEvent{
+        .Chat{
+            width: 400px;
+            .ChatView{
+                .ChatPostForm{
+                    input[type=text]{
+                        width: 355px;
+                    }
+                    margin-bottom: $margin-wd / 2;
+                    width: 100%;
+                    input[type=text]{
+                        @include round-corner(5px);
+                        border-color: $border-clr;
+                        margin: 0;
+                    }
+                    button{
+                        float: right;
+                        margin:0;
+                        width: 40px;
+                        @include button-look();
+                    }
+                }
+            }    
+        } // .Chat
+    }  // .KkkoiEvent
+}
+@media screen and (max-width: 420px) {
+    .Header{
+        .Title{
+            font-size: 20px;
+        }
+        margin-bottom: $margin-wd;
+    }
+    .Footer{
+        margin-top: $margin-wd * 3;
+    }
+    .KkkoiTop,.KkkoiConfirm,.KkkoiRegist,.KkkoiEvent{
+        margin: $margin-wd;
+        .MapBlock{
+            .MapSearch{
+                position: relative;
+                input.TextForm{
+                    width: 100%;
+                }
+                button.SearchBtn{
+                    top: 0;
+                    right: 0;
+                    position: absolute;
+                    
+                }
+                @include clearfix();
+            }
+            .Gmap{
+                width: 100%;
+                height: 250px;
+                padding: 0 ;
+            }
+        }
+
+        .MobileTabMenu{
+            list-style: none;
+            border-bottom: 1px solid $border-clr;
+            @include clearfix();
+            li{
+                float: left;
+                a{
+                    padding: 3px $margin-wd;
+                    background-color: #fff;
+                    display: table;
+                    text-align: center;
+                    border-width: 1px 1px 0 1px;
+                    border-style: solid;
+                    border-color: $border-clr;
+                    border-radius: 5px 5px 0 0/5px 5px 0 0;
+                    -moz-border-radius: 5px 5px 0 0/5px 5px 0 0;
+                    -webkit-border-radius: 5px 5px 0 0/5px 5px 0 0;
+                    -ms-border-radius: 5px 5px 0 0/5px 5px 0 0;
+                    -o-border-radius: 5px 5px 0 0/5px 5px 0 0;
+
+                    &.Selected{
+                        font-weight: bold;
+                        color: #000;
+                    }
+                }
+            }
+        }
+        
+        dl.Information{
+            margin-top: $margin-wd;
+            width: 100%;
+            dt{
+                margin-bottom: 2px;
+                font-size: 12px;
+            }
+            dd{
+                margin-bottom: 5px;
+            }
+            dt.Targets, dt.Deadline, dt.Term{
+                width: $margin-wd * 5;
+                +dd{
+                    margin-left: $margin-wd * 5;
+                }
+            }
+            dt.Deadline + dd{
+                input[type=text]{
+                    width: 130px;
+                }
+            }
+            dt.Targets + dd{
+                ul.Targets{
+                    li{
+                        input[type=email]{
+                            width: 200px;
+                        }
+                    }
+                }
+            }
+            dt.Confirm{
+                color: #aaa;
+                + dd{
+
+                    &:after{
+                        content: "";
+                        display: table;
+                        line-height: 0;
+                        clear: both;
+                    }
+                }
+                &.Message +dd{
+                    padding: $margin-wd;
+                    background-color: #fff;
+                    border: dashed 1px $border-clr;
+                    @include round-corner(5px);
+                }
+            }
+        }  // dl.Information
+    }  // .KkkoiTop,.KkkoiConfirm,.KkkoiRegist,.KkkoiEvent
+
+    .KkkoiEvent{
+        .ChatPostForm{
+            position: relative;
+            margin-bottom: $margin-wd / 2;
+            width: 100%;
+            input[type=text]{
+                width: 100%;
+            }
+            button{
+                position: absolute;
+                top: 0;
+                right: 0;
+                width: 40px;
+            }
+        }
+
+        .Chat{
+            width: 100%;
+            .Subject{
+                display: none;
+            }
+            .ChatView{
+                .ChatPostForm{
+                }
+                ul#chatView{
+                    border: none;
+                    border-bottom: solid 2px $border-clr;
+                    margin-bottom: $margin-wd;
+                }          
+            }
+        }  //.Chat
+    }  // .KkkoiEvent
+       
+}

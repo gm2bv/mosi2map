@@ -1,4 +1,5 @@
 {% load staticfiles %}
+{% load sass_tags %}
 <!DOCTYPE html>
 <html lang="{{ LANGUAGE_CODE|default:"en-us" }}">
   <head>
@@ -7,15 +8,28 @@
     <link rel="stylesheet" href="{% static 'css/reset.css' %}" />
     <link rel="stylesheet" href="{% static 'js/jquery-ui-1.11.4/jquery-ui.css' %}" />
     <link rel="stylesheet" href="{% static 'typicons/typicons.min.css' %}" />
-
+    <link rel="stylesheet" href="{% sass_src 'sass/main.scss' %}" />
+    
     <script type="text/javascript" src="{% static 'js/jquery-1.11.3.min.js' %}"></script>
     <script type="text/javascript" src="{% static 'js/jquery-ui-1.11.4/jquery-ui.js' %}"></script>
     <script type="text/javascript" src="{% static 'js/gmap.js' %}"></script>
     <script type="text/javascript" src="{% static 'js/main.js' %}"></script>
   </head>
   <body>
+    <section class="Header">
+      <div class="Title"><a href="/">mosi2map</a></div>
+      <div class="Links">
+        <a href="https://twitter.com/gm2bv"><span class="typcn typcn-social-twitter"></span></a>
+        <a href="mailto:gm2bv2001@gmail.com"><span class="typcn typcn-mail"></span></a>
+      </div>
+    </section>
+    
     {% block content %}
         {{ content }}
     {% endblock %}
+
+    <section class="Footer">
+      copyright &copy; 2015 gm2bv All Rights Reserved.
+    </section>
   </body>
 </html>
