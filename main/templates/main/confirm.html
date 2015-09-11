@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% load range %}
+{% block title %}mosi2map 確認ページ{% endblock title %}
+
+{% block content %}
+<section class="KkkoiConfirm">
+  <div class="Notice">内容の確認</div>
+  <div class="MapBlock">
+    <div class="Gmap">
+      <div id="map_canvas" style="width: 100%; height: 100%" data-lat="{{ lat }}" data-lng="{{ lng }}"></div>
+    </div>
+  </div>
+  <form action="regist" method="post">
+  <dl class="Information">
+    <dt class="Deadline Confirm">日時</dt>
+    <dd>{{ deadline }}</dd>
+    <dt class="Term Confirm">時間</dt>
+    <dd>{{ dlTerm }}</dd>
+    <dt class="Targets Confirm">通知先</dt>
+    <dd>
+      <ul class="Targets">
+        {% for target in targets %}
+        <li>{{ target }}</li>
+        {% endfor %}
+      </ul>
+    </dd>
+    <dt class="Message Confirm">メッセージ</dt>
+    <dd>{{ message_html }}</dd>
+    <dd class="Ctrl">
+      <input type="hidden" id="lat" name="lat" value="{{ lat }}">
+      <input type="hidden" id="lng" name="lng" value="{{ lng }}">
+      <input type="hidden" id="deadline" name="deadline" value="{{ deadline }}">
+      <input type="hidden" id="term" name="term" value="{{ term }}">
+      <input type="hidden" id="message" name="message" value="{{ message }}">
+    {% for target in targets %}
+      <input type="hidden" name="targets" value="{{ target }}">
+    {% endfor %}
+      <input type="submit" name="regist" value="問題ありません">
+      <input type="submit" name="cancel" class="Cancel" value="やりなおす">
+    </dd>
+  </dl>
+  </form>
+  
+</section>
+{% endblock %}

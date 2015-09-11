@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load range %}
 {% block title %}mosi2map スタートページ{% endblock title %}
 
 {% block content %}
@@ -13,67 +14,78 @@
     </div>
 
     <div class="Gmap">
-      <div id="map_canvas" <% if($lat && $lng){ %>data-lat="<%= $lat %>" data-lng="<%= $lng %>"<% } %>></div>
+      <div id="map_canvas" {% if lat and lng %}data-lat="{{ lat }}" data-lng="{{ lng }}"{% endif %}></div>
     </div>
   </div> <!-- MapBlock -->
-  
-%= form_for confirm => (id=>'notifyForm') => (class=>'NotifyForm') => (method=>'post') => begin
+
+  <form action="confirm" id='notifyForm' class='NotifyForm' method='post'>
+    {% csrf_token %}
   <dl class="Information">
     <dt class="Deadline">日時</dt>
     <dd>
-        % if($dlDate){
-        %= text_field 'dlDate' => $dlDate, id=>'deadlineYMD'
-        % }else{
-        %= text_field 'dlDate', id=>'deadlineYMD'
-        % }
+      <input type='text' name='dlDate' {% if dlDate %}value={{ dlDate }}{% endif %} id='deadlineYMD'>
 
-        % my @hours;
-        % my $i=0;while($i < 24){ if( $dlHour && ($dlHour - $i) == 0 ){ push @hours, [$i=>$i,selected=>'selected']; }else{ push @hours, $i; } $i++; }
-        %= select_field dlHour => [['--'=> -1], @hours], id=>'hour'
-        :
-        % my @mins;
-        % my $j=0;while($j  < 60){ if( $dlMin && ($dlMin - $j) == 0 ){ push @mins, [$j=>$j,selected=>'selected']; }else{ push @mins, $j; } $j+=5; }
-        %= select_field dlMin => [@mins], id=>'min'
-
+      <select name='dlHour' id='hour'>
+            <option value="-1">--</option>
+            {% mkrange 0 24 1 as hour_range %}
+            {% for i in hour_range %}
+              {% if i == dlHour %}
+              <option value="{{ i }}" selected>{{ i }}</option>
+              {% else %}
+              <option value="{{ i }}">{{ i }}</option>
+              {% endif %}
+            {% endfor %}
+      </select>
+      :
+      <select name="dlMin" id="min">
+            {% mkrange 0 60 5 as min_range %}
+            {% for i in min_range%}
+              {% if i == dlMin %}
+              <option value="{{ i }}" selected>{{ i }}</option>
+              {% else %}
+              <option value="{{ i }}">{{ i }}</option>
+              {% endif %}
+            {% endfor %}
+      </select>
     </dd>
     <dt class="Term">時間</dt>
     <dd>
-      %= select_field term => $terms, id=>'term'
+      <select id='term' name='term'>
+        {% for i in terms %}
+        <option value="{{ i }}">{{ i }}</option>
+        {% endfor %}
+      </select>
     </dd>
     <dt class="Targets">通知先</dt>
     <dd>
       <ul id="targets" class="Targets">
-        % if (@$targets > 0) {
+        {% if targets %}
         %  my $err = validation->error('targets');
-        %   for my $t (@$targets) {
+          {%   for t in targets %}
         <li>
-          <input type="email" name="targets"  value="<%= $t %>" <% if($err){ %>class="field-with-error"<% } %> >
-          %   if( $targets->[0] ne $t ){
+          <input type="email" name="targets"  value="{{ t }}" <% if($err){ %>class="field-with-error"<% } %> >
+          {% if forloop.counter0 != 0 %}
           <button class="DelMail">Del</button>
-          %   }
+          {% endif %}
         </li>
-        %   }
-        % }else {
+          {% endfor %}
+        {% else %}
         <li>
-          %= email_field 'targets', size=>40
+          <input type='email' name='targets' size="40">
         </li>
-        % }
+        {% endif %}
         <li class="Ctrl"><button id="addTarget"><span class="typcn typcn-plus"></span>通知先追加</button></li>
       </ul>
     </dd>
     <dt class="Message">メッセージ</dt>
     <dd>
-      % if($message){
-      %= text_area 'message' => $message, class=>'Message', rows=>3
-      % }else{
-      %= text_area 'message', class=>'Message', rows=>3
-      % }
+        <textarea name="message" class="Message" rows="3">{% if message %}{{ message }}{% endif %}</textarea>
     </dd>
     <dd class="Ctrl">
-      %= submit_button '投稿', onClick => 'return takeMarker()'
+      <input type="submit" value='投稿' onClick='return takeMarker()'>
     </dd>
   </dl>
-% end
+  </form>
 </section>
 {% endblock %}
 
