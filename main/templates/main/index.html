@@ -18,7 +18,7 @@
     </div>
   </div> <!-- MapBlock -->
 
-  <form action="confirm" id='notifyForm' class='NotifyForm' method='post'>
+  <form action="{% url 'confirm' %}" id="notifyForm" class="NotifyForm" method="post">
     {% csrf_token %}
   <dl class="Information">
     <dt class="Deadline">日時</dt>
@@ -51,8 +51,12 @@
     <dt class="Term">時間</dt>
     <dd>
       <select id='term' name='term'>
-        {% for i in terms %}
-        <option value="{{ i }}">{{ i }}</option>
+        {% for term in terms|dictsort:'min' %}
+          {% if term.selected %}
+          <option value="{{ term.min }}" selected>{{ term.val }}</option>
+          {% else %}
+          <option value="{{ term.min }}">{{ term.val }}</option>
+          {% endif %}
         {% endfor %}
       </select>
     </dd>
@@ -60,7 +64,6 @@
     <dd>
       <ul id="targets" class="Targets">
         {% if targets %}
-        %  my $err = validation->error('targets');
           {%   for t in targets %}
         <li>
           <input type="email" name="targets"  value="{{ t }}" <% if($err){ %>class="field-with-error"<% } %> >

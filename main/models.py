@@ -15,7 +15,7 @@ class Event(models.Model):
 
 class Mlist(models.Model):
     event = models.ForeignKey('Event')
-    mail = models.CharField(max_length = 256)
+    mail = models.EmailField()
     created_at = models.DateTimeField(auto_now = False, auto_now_add = True)
 
     def __str__(self):

@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+{% load range %}
+{% block title %}mosi2map イベントページ{% endblock title %}
+
+{% block content %}
+<section class="KkkoiEvent">
+  <div class="Notice">
+    {% if not is_live %}
+    <span class="Complete">本イベントは終了しました</span>
+    {% endif %}
+  </div>
+  <div class="MapBlock">
+    <div class="Gmap">
+      <div id="map_canvas" style="width: 100%; height: 100%" {% if lat and lng %}data-lat="{{ lat }}" data-lng="{{ lng }}"{% endif %}></div>
+    </div>
+  </div>
+
+  <ul class="MobileTabMenu" data-target="TabPage">
+    <li><a class="TabInformation" data-page="information">情報</a></li>
+    <li><a class="TabChat" data-page="chat">チャット</a></li>
+  </ul>
+  
+  <dl class="Information TabPage" id="information">
+    <dt class="Deadline Confirm">日時</dt>
+    <dd>{{ deadline }}</dd>
+    <dt class="Term Confirm">時間</dt>
+    <dd>{{ dlTerm }}</dd>
+    <dt class="Targets Confirm">通知先</dt>
+    <dd>
+      <ul class="Targets">
+        {% for target in targets %}
+        <li>{{ target }}</li>
+        {% endfor %}
+      </ul>
+    </dd>
+
+    <dt class="Message Confirm">メッセージ</dt>
+    <dd>{{ message }}</dd>
+  </dl>
+
+  <div class="Chat TabPage" id="chat">
+    <div class="Subject">簡易チャット</div>
+    <div class="ChatView {% if not is_live %}Close{% endif %}" data-url="echo" data-identifier="{{ identifier }}">
+      {% if is_live %}
+      <div class="ChatPostForm">
+        <input type="text" id="chatMessage" class="ChatMessage" placeholder="チャット">
+        <button id="postBtn"><span class="typcn typcn-message"></span></button>
+      </div>
+      {% endif %}
+      <ul id="chatView">
+        {% for chat in chats %}
+        <li>
+          <span class="Date">{{ chat.date }}</span><span class="Message">{{ chat.message }}</span>
+        </li>
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+
+</section>
+{% endblock %}
+
+
