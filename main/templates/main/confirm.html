@@ -7,32 +7,33 @@
   <div class="Notice">内容の確認</div>
   <div class="MapBlock">
     <div class="Gmap">
-      <div id="map_canvas" style="width: 100%; height: 100%" data-lat="{{ lat }}" data-lng="{{ lng }}"></div>
+      <div id="map_canvas" style="width: 100%; height: 100%" data-lat="{{ form.lat.value }}" data-lng="{{ form.lng.value }}"></div>
     </div>
   </div>
   <form action="{% url 'regist' %}" method="post">
     {% csrf_token %}
   <dl class="Information">
     <dt class="Deadline Confirm">日時</dt>
-    <dd>{{ deadline }}</dd>
+    <dd>{{ form.dlDate.value }}{% if form.dlHour.value != '-1' %} {{ form.dlHour.value }}:{{ form.dlMin.value }}{% endif %}</dd>
     <dt class="Term Confirm">時間</dt>
-    <dd>{{ dlTerm }}</dd>
+    <dd>{{ form.getTermStr }}</dd>
     <dt class="Targets Confirm">通知先</dt>
     <dd>
       <ul class="Targets">
         {% for target in targets %}
-        <li>{{ target }}</li>
+        <li>{{ target.mail.value }}</li>
         {% endfor %}
       </ul>
     </dd>
     <dt class="Message Confirm">メッセージ</dt>
-    <dd>{{ message|linebreaksbr }}</dd>
+    <dd>{{ form.message.value|linebreaksbr }}</dd>
     <dd class="Ctrl">
       {% for field in form %}
         {{ field.as_hidden }}
       {% endfor %}
-      <input type="hidden" id="deadline" name="deadline" value="{{ deadline }}">
-
+      {% for target in targets %}
+        {{ target.mail.as_hidden }}
+      {% endfor %}
       <input type="submit" name="regist" value="問題ありません">
       <input type="submit" name="cancel" class="Cancel" value="やりなおす">
     </dd>

@@ -14,7 +14,7 @@
     </div>
 
     <div class="Gmap">
-      <div id="map_canvas" {% if lat and lng %}data-lat="{{ lat }}" data-lng="{{ lng }}"{% endif %}></div>
+      <div id="map_canvas" {% if form.lat.value and form.lng.value %}data-lat="{{ form.lat.value }}" data-lng="{{ form.lng.value }}"{% endif %}></div>
     </div>
   </div> <!-- MapBlock -->
 
@@ -23,66 +23,27 @@
   <dl class="Information">
     <dt class="Deadline">日時</dt>
     <dd>
-      <input type='text' name='dlDate' {% if dlDate %}value={{ dlDate }}{% endif %} id='deadlineYMD'>
-
-      <select name='dlHour' id='hour'>
-            <option value="-1">--</option>
-            {% mkrange 0 24 1 as hour_range %}
-            {% for i in hour_range %}
-              {% if i == dlHour %}
-              <option value="{{ i }}" selected>{{ i }}</option>
-              {% else %}
-              <option value="{{ i }}">{{ i }}</option>
-              {% endif %}
-            {% endfor %}
-      </select>
-      :
-      <select name="dlMin" id="min">
-            {% mkrange 0 60 5 as min_range %}
-            {% for i in min_range%}
-              {% if i == dlMin %}
-              <option value="{{ i }}" selected>{{ i }}</option>
-              {% else %}
-              <option value="{{ i }}">{{ i }}</option>
-              {% endif %}
-            {% endfor %}
-      </select>
+      {{ form.dlDate }}{{ form.dlHour }}：{{ form.dlMin }}
     </dd>
     <dt class="Term">時間</dt>
     <dd>
-      <select id='term' name='term'>
-        {% for term in terms|dictsort:'min' %}
-          {% if term.selected %}
-          <option value="{{ term.min }}" selected>{{ term.val }}</option>
-          {% else %}
-          <option value="{{ term.min }}">{{ term.val }}</option>
-          {% endif %}
-        {% endfor %}
-      </select>
+      {{ form.terms }}
     </dd>
     <dt class="Targets">通知先</dt>
     <dd>
       <ul id="targets" class="Targets">
-        {% if targets %}
-          {%   for t in targets %}
+        {% for target in targets %}
         <li>
-          <input type="email" name="targets"  value="{{ t }}" <% if($err){ %>class="field-with-error"<% } %> >
-          {% if forloop.counter0 != 0 %}
-          <button class="DelMail">Del</button>
-          {% endif %}
+          {{ target.mail }}
+          {% if forloop.counter0 != 0 %}<button class="DelMail">Del</button>{% endif %}
         </li>
-          {% endfor %}
-        {% else %}
-        <li>
-          <input type='email' name='targets' size="40">
-        </li>
-        {% endif %}
+        {% endfor %}
         <li class="Ctrl"><button id="addTarget"><span class="typcn typcn-plus"></span>通知先追加</button></li>
       </ul>
     </dd>
     <dt class="Message">メッセージ</dt>
     <dd>
-        <textarea name="message" class="Message" rows="3">{% if message %}{{ message }}{% endif %}</textarea>
+      {{ form.message }}
     </dd>
     <dd class="Ctrl">
       <input type="submit" value='投稿' onClick='return takeMarker()'>

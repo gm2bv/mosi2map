@@ -5,22 +5,22 @@ var g_timer;
 
 $(function(){
     // date
-    if( $("#deadlineYMD").length ){
-        $("#deadlineYMD").datepicker({
+    if( $("#id_dlDate").length ){
+        $("#id_dlDate").datepicker({
           dateFormat: "yy-mm-dd"
         });
     }
     
     // time
-    if( $('#hour').length && $('#min').length ){
-        if( $('#hour').val() < 0 ){
-            $('#min').attr('disabled', 'disabled').addClass('Disabled');
+    if( $('#id_dlHour').length && $('#id_dlMin').length ){
+        if( $('#id_dlHour').val() < 0 ){
+            $('#id_dlMin').attr('disabled', 'disabled').addClass('Disabled');
         }
-        $('#hour').change(function(){
-            if( $('#hour').val() < 0 ){
-                $('#min').attr('disabled', 'disabled').addClass('Disabled');
+        $('#id_dlHour').change(function(){
+            if( $('#id_dlHour').val() < 0 ){
+                $('#id_dlMin').attr('disabled', 'disabled').addClass('Disabled');
             }else{
-                $('#min').removeAttr('disabled').removeClass('Disabled');
+                $('#id_dlMin').removeAttr('disabled').removeClass('Disabled');
             }
         });
     }
@@ -29,7 +29,8 @@ $(function(){
     if( $('#addTarget').length ){
         $('#addTarget').on('click', function(){
 //            var cnt = $('#targets').find('input[type=text]').length;
-            var newName = 'targets';
+            var newName = 'mail';
+//            var newName = 'targets';
             var delBtn = $('<button>').addClass('DelMail').html("<span class='typcn typcn-delete'></span>");
             var newTarget = $('<li>').append($('<input>').attr({type:'email',name:newName})).append(delBtn);
             $('#targets').find('li.Ctrl').before(newTarget);
