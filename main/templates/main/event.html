@@ -11,7 +11,7 @@
   </div>
   <div class="MapBlock">
     <div class="Gmap">
-      <div id="map_canvas" style="width: 100%; height: 100%" {% if lat and lng %}data-lat="{{ lat }}" data-lng="{{ lng }}"{% endif %}></div>
+      <div id="map_canvas" style="width: 100%; height: 100%" data-lat="{{ event.lat }}" data-lng="{{ event.lng }}"></div>
     </div>
   </div>
 
@@ -22,25 +22,25 @@
   
   <dl class="Information TabPage" id="information">
     <dt class="Deadline Confirm">日時</dt>
-    <dd>{{ deadline }}</dd>
+    <dd>{{ event.deadline|date:"Y年m月d日 H時i分" }}</dd>
     <dt class="Term Confirm">時間</dt>
-    <dd>{{ dlTerm }}</dd>
+    <dd>{{ event.getTermStr }}</dd>
     <dt class="Targets Confirm">通知先</dt>
     <dd>
       <ul class="Targets">
         {% for target in targets %}
-        <li>{{ target }}</li>
+        <li>{{ target.mail }}</li>
         {% endfor %}
       </ul>
     </dd>
 
     <dt class="Message Confirm">メッセージ</dt>
-    <dd>{{ message }}</dd>
+    <dd>{{ event.message|linebreaksbr }}</dd>
   </dl>
 
   <div class="Chat TabPage" id="chat">
     <div class="Subject">簡易チャット</div>
-    <div class="ChatView {% if not is_live %}Close{% endif %}" data-url="echo" data-identifier="{{ identifier }}">
+    <div class="ChatView {% if not is_live %}Close{% endif %}" data-url="{% url 'echo' %}" data-identifier="{{ event.identifier }}">
       {% if is_live %}
       <div class="ChatPostForm">
         <input type="text" id="chatMessage" class="ChatMessage" placeholder="チャット">
@@ -50,7 +50,7 @@
       <ul id="chatView">
         {% for chat in chats %}
         <li>
-          <span class="Date">{{ chat.date }}</span><span class="Message">{{ chat.message }}</span>
+          <span class="Date">{{ chat.created_at|date:"Y年m月d日 H時i分" }}</span><span class="Message">{{ chat.message|escape }}</span>
         </li>
         {% endfor %}
       </ul>

@@ -2,36 +2,6 @@ from django.db import models
 from django import forms
 from django.forms import ModelForm
 
-class Event(models.Model):
-    lat = models.FloatField()
-    lng = models.FloatField()
-    deadline = models.DateTimeField(auto_now = False,auto_now_add = False,blank=True)
-    term = models.IntegerField(blank = True)
-    identifier = models.CharField(max_length = 20, blank=True)
-    message = models.TextField(max_length = 1500, blank = True)
-    created_at = models.DateTimeField(auto_now = False, auto_now_add = True)
-
-    def __str__(self):
-        return str(self.lat) + ' ' + str(self.lng)
-
-
-class Mlist(models.Model):
-    event = models.ForeignKey('Event')
-    mail = models.EmailField()
-    created_at = models.DateTimeField(auto_now = False, auto_now_add = True)
-
-    def __str__(self):
-        return self.mail
-
-
-class Chat(models.Model):
-    event = models.ForeignKey('Event')
-    message = models.CharField(max_length = 500)
-    created_at = models.DateTimeField(auto_now = False, auto_now_add = True)
-
-    def __str__(self):
-        return str(self.created_at) + ':' + self.message
-
 HOUR_CHOICES = (
     ('-1', '--'),
     ('00','00'),('01','01'),('02','02'),('03','03'),('04','04'),
@@ -56,6 +26,43 @@ TERMS_CHOICES = (
     ('1440', '終日')
 )
 
+class Event(models.Model):
+    lat = models.FloatField()
+    lng = models.FloatField()
+    deadline = models.DateTimeField(auto_now = False,auto_now_add = False,blank=True)
+    term = models.IntegerField(blank = True)
+    identifier = models.CharField(max_length = 20, blank=True)
+    message = models.TextField(max_length = 1500, blank = True)
+    created_at = models.DateTimeField(auto_now = False, auto_now_add = True)
+
+    def __str__(self):
+        return str(self.lat) + ' ' + str(self.lng)
+
+
+    def getTermStr(self):
+        selectedTerm = self.term
+        for t in TERMS_CHOICES:
+            if int(t[0]) == selectedTerm:
+                return t[1] 
+        return None
+    
+
+class Mlist(models.Model):
+    event = models.ForeignKey('Event')
+    mail = models.EmailField()
+    created_at = models.DateTimeField(auto_now = False, auto_now_add = True)
+
+    def __str__(self):
+        return self.mail
+
+
+class Chat(models.Model):
+    event = models.ForeignKey('Event')
+    message = models.CharField(max_length = 500)
+    created_at = models.DateTimeField(auto_now = False, auto_now_add = True)
+
+    def __str__(self):
+        return str(self.created_at) + ':' + self.message
 
 class EventForm(ModelForm):
     class Meta:

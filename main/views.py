@@ -1,7 +1,8 @@
 from django.shortcuts import get_object_or_404, render
 from django.http import HttpResponseRedirect, HttpResponse, Http404
 from main.models import Event, Mlist, Chat, EventForm, MlistForm
-from datetime import datetime
+from datetime import datetime, timedelta
+from django.utils.timezone import utc
 import re
 import random
 
@@ -71,14 +72,22 @@ def event(request, event_id):
         event = get_object_or_404(Event, identifier = event_id)
     except Event.DoesNotExist:
         raise Http404("Event does not exist")
+    targets = Mlist.objects.filter(event = event.pk)
+    deadline = datetime.utcnow().replace(tzinfo=utc) + timedelta(minutes = event.term)
+    chats = Chat.objects.filter(event = event.pk)
 
-    now = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    if event.deadline > deadline:
+        is_live = True
+
     context = {
-        'lat' : event.lat,
-        'lng' :event.lng,
-        'deadline': event.deadline,
-        'message' : event.message
+        'event': event,
+        'targets': targets,
+        'chats': chats,
+        'is_live': is_live,
     }
     return render(request, 'main/event.html', context)
+
+def echo(request):
+    return None
 
 

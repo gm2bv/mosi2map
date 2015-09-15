@@ -14,7 +14,7 @@
     {% csrf_token %}
   <dl class="Information">
     <dt class="Deadline Confirm">日時</dt>
-    <dd>{{ form.dlDate.value }}{% if form.dlHour.value != '-1' %} {{ form.dlHour.value }}:{{ form.dlMin.value }}{% endif %}</dd>
+    <dd>{{ form.dlDate.value }}{% if form.dlHour.value != '-1' %} {{ form.dlHour.value }}時{{ form.dlMin.value }}分{% endif %}</dd>
     <dt class="Term Confirm">時間</dt>
     <dd>{{ form.getTermStr }}</dd>
     <dt class="Targets Confirm">通知先</dt>
