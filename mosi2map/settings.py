@@ -37,6 +37,7 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'sass_processor',
+    'swampdragon',
     'main',
 )
 
@@ -87,4 +88,5 @@ STATICFILES_DIRS = (
     os.path.join(BASE_DIR, "static"),
 )
 SASS_PROCESSOR_ROOT = 'static'
-
+DRAGON_URL = 'http://localhost:9999/'
+SWAMP_DRAGON_CONNECTION = ('swampdragon.connections.sockjs_connection.DjangoSubscriberConnection', '/data')

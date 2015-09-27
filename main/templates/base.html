@@ -1,5 +1,6 @@
 {% load staticfiles %}
 {% load sass_tags %}
+{% load swampdragon_tags %}
 <!DOCTYPE html>
 <html lang="{{ LANGUAGE_CODE|default:"en-us" }}">
   <head>
@@ -10,10 +11,6 @@
     <link rel="stylesheet" href="{% static 'typicons/typicons.min.css' %}" />
     <link rel="stylesheet" href="{% sass_src 'sass/main.scss' %}" />
     
-    <script type="text/javascript" src="{% static 'js/jquery-1.11.3.min.js' %}"></script>
-    <script type="text/javascript" src="{% static 'js/jquery-ui-1.11.4/jquery-ui.js' %}"></script>
-    <script type="text/javascript" src="{% static 'js/gmap.js' %}"></script>
-    <script type="text/javascript" src="{% static 'js/main.js' %}"></script>
   </head>
   <body>
     <section class="Header">
@@ -31,5 +28,15 @@
     <section class="Footer">
       copyright &copy; 2015 gm2bv All Rights Reserved.
     </section>
+    <script type="text/javascript" src="{% static 'js/jquery-1.11.3.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/jquery-ui-1.11.4/jquery-ui.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/gmap.js' %}"></script>
+    {% swampdragon_settings %}
+    <script type="text/javascript" src="{% static 'swampdragon/js/dist/swampdragon.min.js' %}"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}swampdragon/js/dist/datamapper.js"></script>
+    <script type="text/javascript" src="{% static 'js/main.js' %}"></script>
+    <script>
+      console.log(window.swampdragon_host);
+    </script>
   </body>
 </html>

@@ -40,7 +40,7 @@
 
   <div class="Chat TabPage" id="chat">
     <div class="Subject">簡易チャット</div>
-    <div class="ChatView {% if not is_live %}Close{% endif %}" data-url="{% url 'echo' %}" data-identifier="{{ event.identifier }}">
+    <div class="ChatView {% if not is_live %}Close{% endif %}" data-url="/echo" data-identifier="{{ event.identifier }}">
       {% if is_live %}
       <div class="ChatPostForm">
         <input type="text" id="chatMessage" class="ChatMessage" placeholder="チャット">
@@ -48,11 +48,13 @@
       </div>
       {% endif %}
       <ul id="chatView">
+        {% if not is_live %}
         {% for chat in chats %}
         <li>
-          <span class="Date">{{ chat.created_at|date:"Y年m月d日 H時i分" }}</span><span class="Message">{{ chat.message|escape }}</span>
+          <span class="Date">{{ chat.created_at|date:"Y年n月j日 G時i分" }}</span><span class="Message">{{ chat.message }}</span>
         </li>
         {% endfor %}
+        {% endif %}
       </ul>
     </div>
   </div>

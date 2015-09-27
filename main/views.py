@@ -61,7 +61,7 @@ def regist(request):
     return HttpResponseRedirect('/main/event/' + new_event.identifier)
 
 def randStr(size):
-    seed = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJLKMNOPQRSTUVWXYZ0123456789%@"
+    seed = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJLKMNOPQRSTUVWXYZ0123456789"
     ret = ""
     for i in range(size):
         ret += random.choice(seed)
@@ -73,21 +73,17 @@ def event(request, event_id):
     except Event.DoesNotExist:
         raise Http404("Event does not exist")
     targets = Mlist.objects.filter(event = event.pk)
-    deadline = datetime.utcnow().replace(tzinfo=utc) + timedelta(minutes = event.term)
-    chats = Chat.objects.filter(event = event.pk)
-
-    if event.deadline > deadline:
-        is_live = True
+    now = datetime.utcnow().replace(tzinfo=utc)
+    is_live = True if event.deadline + timedelta(minutes = event.term) > now else False
+    chats = Chat.objects.filter(event = event.pk) if not is_live else None
 
     context = {
         'event': event,
         'targets': targets,
-        'chats': chats,
         'is_live': is_live,
+        'chats': chats,
     }
     return render(request, 'main/event.html', context)
 
-def echo(request):
-    return None
 
 

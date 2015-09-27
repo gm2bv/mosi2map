@@ -4,6 +4,12 @@
 var g_timer;
 
 $(function(){
+
+    var get_clientname = function(){
+        return 'localhost' + Math.floor($.now() / 1000);
+    };
+    var myname = get_clientname();;
+    
     // date
     if( $("#id_dlDate").length ){
         $("#id_dlDate").datepicker({
@@ -50,31 +56,6 @@ $(function(){
         });
     }
 
-    var addMessage = function(msg){
-        var elm = $('<li>');
-        var elm_msg = $('<span>').addClass('Message').text(msg);
-        elm.append(elm_msg);
-        $('#chatView').prepend(elm);
-    }
-    var pushComes = function(event){
-        console.log("[PUSH] comes!!");
-        var dat = JSON.parse(event.data);
-        if(dat.msg){
-            console.log("   msg: " + dat.msg);
-            var elm = $('<li>');
-            var elm_date = $('<span>').addClass('Date').text(dat.date);
-            var elm_msg = $('<span>').addClass('Message').text(dat.msg);
-            elm.append(elm_date).append(elm_msg);
-            $('#chatView').prepend(elm);
-
-            $('#chatMessage').val('');
-        }else if( dat.lat && dat.lng ){
-            var gPos = new google.maps.LatLng(dat.lat, dat.lng);
-            var id = dat.connection;
-            addMarker(id, gPos);
-        }
-    };
-
     if( $('.Chat').length ){
         if( $('.MobileTabMenu').css('display') !== 'none' ){
             // for Mobile
@@ -104,45 +85,141 @@ $(function(){
 
             var url = $('.ChatView').data('url');
             var isCon = false;
-            var ws = new WebSocket(url);
-            ws.onmessage = pushComes;
-            ws.onopen    = function(event){
-                //            console.log("open");
-                isCon=true;
+            var userMarkers = new Object();
+
+            var addChat = function(data){
+                var dateVal = new Date(data.created_at);
+                var dateStr = dateVal.getFullYear() + '年' +
+                    (dateVal.getMonth() + 1) + '月' +
+                    dateVal.getDate() + '日 ' +
+                    dateVal.getHours() + '時' +
+                    dateVal.getMinutes() + '分';
+                $('#chatView').prepend(
+                    $('<li>').append(
+                        $('<span>').addClass('Date').text(dateStr)
+                    ).append(
+                        $('<span>').addClass('Message').text(data.message)
+                    )
+                );
             };
-            ws.onclose = function(event){
+            var addMessage = function(msg){
+                $('#chatView').prepend(
+                    $('<li>').append(
+                        $('<span>').addClass('Message').text(msg)
+                    )
+                );
+            }
+
+            var setPosition = function(){
+                navigator.geolocation.getCurrentPosition(function(ev){
+                    var identifier = location.pathname.replace(/.*\/([\w]+)\/$/, '$1');
+                    var data = {
+                        'identifier': identifier,
+                        'local_channel': myname,
+                        'lat': ev.coords.latitude,
+                        'lng': ev.coords.longitude
+                    };
+                    swampdragon.callRouter('get_markers', 'marker-list',
+                                           data,
+                                           function(context, data){
+                                           });
+                }, null);
+            };
+
+            var showMarkers = function(obj){
+                var id = obj.local_channel;
+                var location = new google.maps.LatLng(obj.lat, obj.lng);
+                if( userMarkers[id] ){
+                    var curPos = userMarkers[id].getPosition();
+                    var meter = google.maps.geometry.spherical.computeDistanceBetween(location, curPos);
+                    if( meter < 100 ){ return } // 近距離は除外
+                    userMarkers[id].setMap(null);
+                }
+
+                userMarkers[id] = new google.maps.Marker({
+                    draggable: false,
+                    animation: google.maps.Animation.BOUNCE,
+                    position: location,
+                    icon: {
+                        path: google.maps.SymbolPath.BACKWARD_CLOSED_ARROW,
+                        scale: 5
+                    },
+                    map: g_map
+                });
+            };            
+            
+            // =======================
+            // メインの処理
+            // =======================
+            swampdragon.ready(function(){
+                isCon=true;
+                var identifier = location.pathname.replace(/.*\/([\w]+)\/$/, '$1');
+                
+                swampdragon.subscribe('chat-list', 'ch-chat|' + myname,
+                                      {'identifier': identifier},
+                                      function(context, data){},
+                                      function(context, data){}
+                                     );
+
+                swampdragon.subscribe('marker-list', 'ch-marker|' + myname,
+                                      {'identifier': identifier},
+                                      function(context, data){}
+                                      function(context, data){}
+                                     );                                
+                
+                swampdragon.getList('chat-list',
+                                    {'identifier': identifier},
+                                    function(response, data){
+                                        for(var i=data.length; i > 0;){
+                                            addChat(data[--i]);
+                                        }
+                                    });
+            });
+
+            // Push通知
+            swampdragon.onChannelMessage(function(channels, obj){
+                if( $.inArray('ch-chat|' + myname, channels) >= 0 ){
+                    addChat(obj.data);
+                }
+                if( $.inArray('ch-marker|' + myname, channels) >= 0){
+                    showMarkers(obj);
+                }
+            });
+
+            swampdragon.close(function(){                
                 //            console.log("close");
                 isCon = false;
                 addMessage("接続が切れました");
                 clearInterval(g_timer);
                 clearMarker();
-            };
+                $('#postBtn').off('click');
+                $('#postBtn').attr('disabled', 'disabled');
+            });
 
+            // 投稿ボタン
             $('#postBtn').on('click', $.proxy(function(){
+                var id = $('.ChatView').data('id');
                 var identifier = $('.ChatView').data('identifier');
                 var msg = $('#chatMessage').val();            
                 if( isCon ){
-                    console.log("[MSG] " + msg);
-                    ws.send(JSON.stringify({identifier: identifier, msg: msg}));
+                    swampdragon.create('chat-list', {
+                        'identifier': identifier,
+                        'message': msg,
+                    },function(context, data){
+                        $('#chatMessage').val('');
+                    },function(context, data){
+                        addMessage("送信に失敗しました。再投稿してください");
+                        console.log(data);
+                    });
                 }else{
                 }
             }, this));
 
-            var montior = function(event){
-                ws.send(JSON.stringify({lat: event.coords.latitude, lng: event.coords.longitude}));
-            };
-
-            var getPosition = function(){
-                navigator.geolocation.getCurrentPosition(function(ev){
-                    ws.send(JSON.stringify({lat: ev.coords.latitude, lng: ev.coords.longitude}));
-                }, null);
-            }
-            
             if(navigator.geolocation){
-                getPosition();
-                g_timer = setInterval(getPosition, 10000);
-            }        
-        }
-    }
+                setPosition();
+                g_timer = setInterval(setPosition, 10000);
+            }                    
+        } // $('.ChatView').length
+    } // $('.Chat')
 });
 }(jQuery));

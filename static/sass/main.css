@@ -286,45 +286,45 @@ textarea.field-with-error {
   border-radius: 5px; }
 
 @media screen and (min-width: 801px) {
-  /* line 281, /Users/yhori/workspace/python/django/mosi2map/static/sass/main.scss */
+  /* line 284, /Users/yhori/workspace/python/django/mosi2map/static/sass/main.scss */
   .KkkoiTop, .KkkoiConfirm, .KkkoiRegist, .KkkoiEvent {
     margin-top: 30px;
     margin-bottom: 30px;
     position: relative;
     left: 50%;
     margin-left: -400px; }
-    /* line 287, /Users/yhori/workspace/python/django/mosi2map/static/sass/main.scss */
+    /* line 290, /Users/yhori/workspace/python/django/mosi2map/static/sass/main.scss */
     .KkkoiTop .MapBlock, .KkkoiConfirm .MapBlock, .KkkoiRegist .MapBlock, .KkkoiEvent .MapBlock {
       width: 400px;
       float: left; }
-      /* line 291, /Users/yhori/workspace/python/django/mosi2map/static/sass/main.scss */
+      /* line 294, /Users/yhori/workspace/python/django/mosi2map/static/sass/main.scss */
       .KkkoiTop .MapBlock .MapSearch input.TextForm, .KkkoiConfirm .MapBlock .MapSearch input.TextForm, .KkkoiRegist .MapBlock .MapSearch input.TextForm, .KkkoiEvent .MapBlock .MapSearch input.TextForm {
         width: 356px; }
-      /* line 295, /Users/yhori/workspace/python/django/mosi2map/static/sass/main.scss */
+      /* line 298, /Users/yhori/workspace/python/django/mosi2map/static/sass/main.scss */
       .KkkoiTop .MapBlock .Gmap, .KkkoiConfirm .MapBlock .Gmap, .KkkoiRegist .MapBlock .Gmap, .KkkoiEvent .MapBlock .Gmap {
         width: 100%;
         height: 300px;
         padding: 0; }
-    /* line 301, /Users/yhori/workspace/python/django/mosi2map/static/sass/main.scss */
+    /* line 304, /Users/yhori/workspace/python/django/mosi2map/static/sass/main.scss */
     .KkkoiTop .MobileTabMenu, .KkkoiConfirm .MobileTabMenu, .KkkoiRegist .MobileTabMenu, .KkkoiEvent .MobileTabMenu {
       display: none; }
-    /* line 304, /Users/yhori/workspace/python/django/mosi2map/static/sass/main.scss */
+    /* line 307, /Users/yhori/workspace/python/django/mosi2map/static/sass/main.scss */
     .KkkoiTop dl.Information, .KkkoiConfirm dl.Information, .KkkoiRegist dl.Information, .KkkoiEvent dl.Information {
       width: 390px;
       float: left;
       margin-left: 10px;
       margin-bottom: 0; }
-      /* line 311, /Users/yhori/workspace/python/django/mosi2map/static/sass/main.scss */
+      /* line 314, /Users/yhori/workspace/python/django/mosi2map/static/sass/main.scss */
       .KkkoiTop dl.Information dt.Deadline + dd input, .KkkoiConfirm dl.Information dt.Deadline + dd input, .KkkoiRegist dl.Information dt.Deadline + dd input, .KkkoiEvent dl.Information dt.Deadline + dd input {
         width: 190px;
         margin-right: 3px; }
-      /* line 315, /Users/yhori/workspace/python/django/mosi2map/static/sass/main.scss */
+      /* line 318, /Users/yhori/workspace/python/django/mosi2map/static/sass/main.scss */
       .KkkoiTop dl.Information dt.Deadline + dd select, .KkkoiConfirm dl.Information dt.Deadline + dd select, .KkkoiRegist dl.Information dt.Deadline + dd select, .KkkoiEvent dl.Information dt.Deadline + dd select {
         width: 60px; }
-      /* line 319, /Users/yhori/workspace/python/django/mosi2map/static/sass/main.scss */
+      /* line 322, /Users/yhori/workspace/python/django/mosi2map/static/sass/main.scss */
       .KkkoiTop dl.Information dt.Confirm, .KkkoiConfirm dl.Information dt.Confirm, .KkkoiRegist dl.Information dt.Confirm, .KkkoiEvent dl.Information dt.Confirm {
         padding-top: 10px; }
-        /* line 321, /Users/yhori/workspace/python/django/mosi2map/static/sass/main.scss */
+        /* line 324, /Users/yhori/workspace/python/django/mosi2map/static/sass/main.scss */
         .KkkoiTop dl.Information dt.Confirm + dd, .KkkoiConfirm dl.Information dt.Confirm + dd, .KkkoiRegist dl.Information dt.Confirm + dd, .KkkoiEvent dl.Information dt.Confirm + dd {
           border: 2px solid #bbbbbb;
           padding: 10px;
@@ -333,18 +333,18 @@ textarea.field-with-error {
           -moz-border-radius: 5px;
           -ms-border-radius: 5px;
           border-radius: 5px; }
-  /* line 332, /Users/yhori/workspace/python/django/mosi2map/static/sass/main.scss */
+  /* line 335, /Users/yhori/workspace/python/django/mosi2map/static/sass/main.scss */
   .KkkoiEvent .Chat {
     clear: both;
     width: 800px; }
-    /* line 336, /Users/yhori/workspace/python/django/mosi2map/static/sass/main.scss */
+    /* line 339, /Users/yhori/workspace/python/django/mosi2map/static/sass/main.scss */
     .KkkoiEvent .Chat .ChatView .ChatPostForm {
       margin-bottom: 5px;
       width: 100%; }
-      /* line 337, /Users/yhori/workspace/python/django/mosi2map/static/sass/main.scss */
+      /* line 340, /Users/yhori/workspace/python/django/mosi2map/static/sass/main.scss */
       .KkkoiEvent .Chat .ChatView .ChatPostForm input[type=text] {
         width: 755px; }
-      /* line 342, /Users/yhori/workspace/python/django/mosi2map/static/sass/main.scss */
+      /* line 345, /Users/yhori/workspace/python/django/mosi2map/static/sass/main.scss */
       .KkkoiEvent .Chat .ChatView .ChatPostForm input[type=text] {
         -webkit-border-radius: 5px;
         -moz-border-radius: 5px;
@@ -352,7 +352,7 @@ textarea.field-with-error {
         border-radius: 5px;
         border-color: #aaa;
         margin: 0; }
-      /* line 347, /Users/yhori/workspace/python/django/mosi2map/static/sass/main.scss */
+      /* line 350, /Users/yhori/workspace/python/django/mosi2map/static/sass/main.scss */
       .KkkoiEvent .Chat .ChatView .ChatPostForm button {
         float: right;
         margin: 0;
@@ -368,40 +368,40 @@ textarea.field-with-error {
         border-radius: 5px; } }
 
 @media screen and (min-width: 421px) and (max-width: 801px) {
-  /* line 360, /Users/yhori/workspace/python/django/mosi2map/static/sass/main.scss */
+  /* line 363, /Users/yhori/workspace/python/django/mosi2map/static/sass/main.scss */
   .KkkoiTop, .KkkoiConfirm, .KkkoiRegist, .KkkoiEvent {
     margin: 30px; }
-    /* line 362, /Users/yhori/workspace/python/django/mosi2map/static/sass/main.scss */
+    /* line 365, /Users/yhori/workspace/python/django/mosi2map/static/sass/main.scss */
     .KkkoiTop .MapBlock, .KkkoiConfirm .MapBlock, .KkkoiRegist .MapBlock, .KkkoiEvent .MapBlock {
       width: 400px; }
-      /* line 364, /Users/yhori/workspace/python/django/mosi2map/static/sass/main.scss */
+      /* line 367, /Users/yhori/workspace/python/django/mosi2map/static/sass/main.scss */
       .KkkoiTop .MapBlock .MapSearch, .KkkoiConfirm .MapBlock .MapSearch, .KkkoiRegist .MapBlock .MapSearch, .KkkoiEvent .MapBlock .MapSearch {
         width: 100%; }
-        /* line 366, /Users/yhori/workspace/python/django/mosi2map/static/sass/main.scss */
+        /* line 369, /Users/yhori/workspace/python/django/mosi2map/static/sass/main.scss */
         .KkkoiTop .MapBlock .MapSearch input.TextForm, .KkkoiConfirm .MapBlock .MapSearch input.TextForm, .KkkoiRegist .MapBlock .MapSearch input.TextForm, .KkkoiEvent .MapBlock .MapSearch input.TextForm {
           width: 356px; }
-      /* line 370, /Users/yhori/workspace/python/django/mosi2map/static/sass/main.scss */
+      /* line 373, /Users/yhori/workspace/python/django/mosi2map/static/sass/main.scss */
       .KkkoiTop .MapBlock .Gmap, .KkkoiConfirm .MapBlock .Gmap, .KkkoiRegist .MapBlock .Gmap, .KkkoiEvent .MapBlock .Gmap {
         width: 100%;
         height: 300px;
         padding: 0; }
-    /* line 376, /Users/yhori/workspace/python/django/mosi2map/static/sass/main.scss */
+    /* line 379, /Users/yhori/workspace/python/django/mosi2map/static/sass/main.scss */
     .KkkoiTop .MobileTabMenu, .KkkoiConfirm .MobileTabMenu, .KkkoiRegist .MobileTabMenu, .KkkoiEvent .MobileTabMenu {
       display: none; }
-    /* line 379, /Users/yhori/workspace/python/django/mosi2map/static/sass/main.scss */
+    /* line 382, /Users/yhori/workspace/python/django/mosi2map/static/sass/main.scss */
     .KkkoiTop dl.Information, .KkkoiConfirm dl.Information, .KkkoiRegist dl.Information, .KkkoiEvent dl.Information {
       width: 400px;
       margin-bottom: 0; }
-      /* line 383, /Users/yhori/workspace/python/django/mosi2map/static/sass/main.scss */
+      /* line 386, /Users/yhori/workspace/python/django/mosi2map/static/sass/main.scss */
       .KkkoiTop dl.Information dt.Deadline + dd input, .KkkoiConfirm dl.Information dt.Deadline + dd input, .KkkoiRegist dl.Information dt.Deadline + dd input, .KkkoiEvent dl.Information dt.Deadline + dd input {
         width: 200px; }
-      /* line 386, /Users/yhori/workspace/python/django/mosi2map/static/sass/main.scss */
+      /* line 389, /Users/yhori/workspace/python/django/mosi2map/static/sass/main.scss */
       .KkkoiTop dl.Information dt.Deadline + dd select, .KkkoiConfirm dl.Information dt.Deadline + dd select, .KkkoiRegist dl.Information dt.Deadline + dd select, .KkkoiEvent dl.Information dt.Deadline + dd select {
         width: 60px; }
-      /* line 390, /Users/yhori/workspace/python/django/mosi2map/static/sass/main.scss */
+      /* line 393, /Users/yhori/workspace/python/django/mosi2map/static/sass/main.scss */
       .KkkoiTop dl.Information dt.Confirm, .KkkoiConfirm dl.Information dt.Confirm, .KkkoiRegist dl.Information dt.Confirm, .KkkoiEvent dl.Information dt.Confirm {
         padding-top: 10px; }
-        /* line 392, /Users/yhori/workspace/python/django/mosi2map/static/sass/main.scss */
+        /* line 395, /Users/yhori/workspace/python/django/mosi2map/static/sass/main.scss */
         .KkkoiTop dl.Information dt.Confirm + dd, .KkkoiConfirm dl.Information dt.Confirm + dd, .KkkoiRegist dl.Information dt.Confirm + dd, .KkkoiEvent dl.Information dt.Confirm + dd {
           border: 2px solid #bbbbbb;
           padding: 10px;
@@ -410,17 +410,17 @@ textarea.field-with-error {
           -moz-border-radius: 5px;
           -ms-border-radius: 5px;
           border-radius: 5px; }
-  /* line 403, /Users/yhori/workspace/python/django/mosi2map/static/sass/main.scss */
+  /* line 406, /Users/yhori/workspace/python/django/mosi2map/static/sass/main.scss */
   .KkkoiEvent .Chat {
     width: 400px; }
-    /* line 406, /Users/yhori/workspace/python/django/mosi2map/static/sass/main.scss */
+    /* line 409, /Users/yhori/workspace/python/django/mosi2map/static/sass/main.scss */
     .KkkoiEvent .Chat .ChatView .ChatPostForm {
       margin-bottom: 5px;
       width: 100%; }
-      /* line 407, /Users/yhori/workspace/python/django/mosi2map/static/sass/main.scss */
+      /* line 410, /Users/yhori/workspace/python/django/mosi2map/static/sass/main.scss */
       .KkkoiEvent .Chat .ChatView .ChatPostForm input[type=text] {
         width: 355px; }
-      /* line 412, /Users/yhori/workspace/python/django/mosi2map/static/sass/main.scss */
+      /* line 415, /Users/yhori/workspace/python/django/mosi2map/static/sass/main.scss */
       .KkkoiEvent .Chat .ChatView .ChatPostForm input[type=text] {
         -webkit-border-radius: 5px;
         -moz-border-radius: 5px;
@@ -428,7 +428,7 @@ textarea.field-with-error {
         border-radius: 5px;
         border-color: #aaa;
         margin: 0; }
-      /* line 417, /Users/yhori/workspace/python/django/mosi2map/static/sass/main.scss */
+      /* line 420, /Users/yhori/workspace/python/django/mosi2map/static/sass/main.scss */
       .KkkoiEvent .Chat .ChatView .ChatPostForm button {
         float: right;
         margin: 0;
@@ -444,25 +444,25 @@ textarea.field-with-error {
         border-radius: 5px; } }
 
 @media screen and (max-width: 420px) {
-  /* line 429, /Users/yhori/workspace/python/django/mosi2map/static/sass/main.scss */
+  /* line 432, /Users/yhori/workspace/python/django/mosi2map/static/sass/main.scss */
   .Header {
     margin-bottom: 10px; }
-    /* line 430, /Users/yhori/workspace/python/django/mosi2map/static/sass/main.scss */
+    /* line 433, /Users/yhori/workspace/python/django/mosi2map/static/sass/main.scss */
     .Header .Title {
       font-size: 20px; }
-  /* line 435, /Users/yhori/workspace/python/django/mosi2map/static/sass/main.scss */
+  /* line 438, /Users/yhori/workspace/python/django/mosi2map/static/sass/main.scss */
   .Footer {
     margin-top: 30px; }
-  /* line 438, /Users/yhori/workspace/python/django/mosi2map/static/sass/main.scss */
+  /* line 441, /Users/yhori/workspace/python/django/mosi2map/static/sass/main.scss */
   .KkkoiTop, .KkkoiConfirm, .KkkoiRegist, .KkkoiEvent {
     margin: 10px; }
-    /* line 441, /Users/yhori/workspace/python/django/mosi2map/static/sass/main.scss */
+    /* line 444, /Users/yhori/workspace/python/django/mosi2map/static/sass/main.scss */
     .KkkoiTop .MapBlock .MapSearch, .KkkoiConfirm .MapBlock .MapSearch, .KkkoiRegist .MapBlock .MapSearch, .KkkoiEvent .MapBlock .MapSearch {
       position: relative; }
-      /* line 443, /Users/yhori/workspace/python/django/mosi2map/static/sass/main.scss */
+      /* line 446, /Users/yhori/workspace/python/django/mosi2map/static/sass/main.scss */
       .KkkoiTop .MapBlock .MapSearch input.TextForm, .KkkoiConfirm .MapBlock .MapSearch input.TextForm, .KkkoiRegist .MapBlock .MapSearch input.TextForm, .KkkoiEvent .MapBlock .MapSearch input.TextForm {
         width: 100%; }
-      /* line 446, /Users/yhori/workspace/python/django/mosi2map/static/sass/main.scss */
+      /* line 449, /Users/yhori/workspace/python/django/mosi2map/static/sass/main.scss */
       .KkkoiTop .MapBlock .MapSearch button.SearchBtn, .KkkoiConfirm .MapBlock .MapSearch button.SearchBtn, .KkkoiRegist .MapBlock .MapSearch button.SearchBtn, .KkkoiEvent .MapBlock .MapSearch button.SearchBtn {
         top: 0;
         right: 0;
@@ -475,12 +475,12 @@ textarea.field-with-error {
       /* line 22, /Users/yhori/workspace/python/django/mosi2map/static/sass/main.scss */
       .KkkoiTop .MapBlock .MapSearch:after, .KkkoiConfirm .MapBlock .MapSearch:after, .KkkoiRegist .MapBlock .MapSearch:after, .KkkoiEvent .MapBlock .MapSearch:after {
         clear: both; }
-    /* line 454, /Users/yhori/workspace/python/django/mosi2map/static/sass/main.scss */
+    /* line 457, /Users/yhori/workspace/python/django/mosi2map/static/sass/main.scss */
     .KkkoiTop .MapBlock .Gmap, .KkkoiConfirm .MapBlock .Gmap, .KkkoiRegist .MapBlock .Gmap, .KkkoiEvent .MapBlock .Gmap {
       width: 100%;
       height: 250px;
       padding: 0; }
-    /* line 461, /Users/yhori/workspace/python/django/mosi2map/static/sass/main.scss */
+    /* line 464, /Users/yhori/workspace/python/django/mosi2map/static/sass/main.scss */
     .KkkoiTop .MobileTabMenu, .KkkoiConfirm .MobileTabMenu, .KkkoiRegist .MobileTabMenu, .KkkoiEvent .MobileTabMenu {
       list-style: none;
       border-bottom: 1px solid #aaa; }
@@ -492,10 +492,10 @@ textarea.field-with-error {
       /* line 22, /Users/yhori/workspace/python/django/mosi2map/static/sass/main.scss */
       .KkkoiTop .MobileTabMenu:after, .KkkoiConfirm .MobileTabMenu:after, .KkkoiRegist .MobileTabMenu:after, .KkkoiEvent .MobileTabMenu:after {
         clear: both; }
-      /* line 465, /Users/yhori/workspace/python/django/mosi2map/static/sass/main.scss */
+      /* line 468, /Users/yhori/workspace/python/django/mosi2map/static/sass/main.scss */
       .KkkoiTop .MobileTabMenu li, .KkkoiConfirm .MobileTabMenu li, .KkkoiRegist .MobileTabMenu li, .KkkoiEvent .MobileTabMenu li {
         float: left; }
-        /* line 467, /Users/yhori/workspace/python/django/mosi2map/static/sass/main.scss */
+        /* line 470, /Users/yhori/workspace/python/django/mosi2map/static/sass/main.scss */
         .KkkoiTop .MobileTabMenu li a, .KkkoiConfirm .MobileTabMenu li a, .KkkoiRegist .MobileTabMenu li a, .KkkoiEvent .MobileTabMenu li a {
           padding: 3px 10px;
           background-color: #fff;
@@ -509,43 +509,43 @@ textarea.field-with-error {
           -webkit-border-radius: 5px 5px 0 0/5px 5px 0 0;
           -ms-border-radius: 5px 5px 0 0/5px 5px 0 0;
           -o-border-radius: 5px 5px 0 0/5px 5px 0 0; }
-          /* line 481, /Users/yhori/workspace/python/django/mosi2map/static/sass/main.scss */
+          /* line 484, /Users/yhori/workspace/python/django/mosi2map/static/sass/main.scss */
           .KkkoiTop .MobileTabMenu li a.Selected, .KkkoiConfirm .MobileTabMenu li a.Selected, .KkkoiRegist .MobileTabMenu li a.Selected, .KkkoiEvent .MobileTabMenu li a.Selected {
             font-weight: bold;
             color: #000; }
-    /* line 489, /Users/yhori/workspace/python/django/mosi2map/static/sass/main.scss */
+    /* line 492, /Users/yhori/workspace/python/django/mosi2map/static/sass/main.scss */
     .KkkoiTop dl.Information, .KkkoiConfirm dl.Information, .KkkoiRegist dl.Information, .KkkoiEvent dl.Information {
       margin-top: 10px;
       width: 100%; }
-      /* line 492, /Users/yhori/workspace/python/django/mosi2map/static/sass/main.scss */
+      /* line 495, /Users/yhori/workspace/python/django/mosi2map/static/sass/main.scss */
       .KkkoiTop dl.Information dt, .KkkoiConfirm dl.Information dt, .KkkoiRegist dl.Information dt, .KkkoiEvent dl.Information dt {
         margin-bottom: 2px;
         font-size: 12px; }
-      /* line 496, /Users/yhori/workspace/python/django/mosi2map/static/sass/main.scss */
+      /* line 499, /Users/yhori/workspace/python/django/mosi2map/static/sass/main.scss */
       .KkkoiTop dl.Information dd, .KkkoiConfirm dl.Information dd, .KkkoiRegist dl.Information dd, .KkkoiEvent dl.Information dd {
         margin-bottom: 5px; }
-      /* line 499, /Users/yhori/workspace/python/django/mosi2map/static/sass/main.scss */
+      /* line 502, /Users/yhori/workspace/python/django/mosi2map/static/sass/main.scss */
       .KkkoiTop dl.Information dt.Targets, .KkkoiTop dl.Information dt.Deadline, .KkkoiTop dl.Information dt.Term, .KkkoiConfirm dl.Information dt.Targets, .KkkoiConfirm dl.Information dt.Deadline, .KkkoiConfirm dl.Information dt.Term, .KkkoiRegist dl.Information dt.Targets, .KkkoiRegist dl.Information dt.Deadline, .KkkoiRegist dl.Information dt.Term, .KkkoiEvent dl.Information dt.Targets, .KkkoiEvent dl.Information dt.Deadline, .KkkoiEvent dl.Information dt.Term {
         width: 50px; }
-        /* line 501, /Users/yhori/workspace/python/django/mosi2map/static/sass/main.scss */
+        /* line 504, /Users/yhori/workspace/python/django/mosi2map/static/sass/main.scss */
         .KkkoiTop dl.Information dt.Targets + dd, .KkkoiTop dl.Information dt.Deadline + dd, .KkkoiTop dl.Information dt.Term + dd, .KkkoiConfirm dl.Information dt.Targets + dd, .KkkoiConfirm dl.Information dt.Deadline + dd, .KkkoiConfirm dl.Information dt.Term + dd, .KkkoiRegist dl.Information dt.Targets + dd, .KkkoiRegist dl.Information dt.Deadline + dd, .KkkoiRegist dl.Information dt.Term + dd, .KkkoiEvent dl.Information dt.Targets + dd, .KkkoiEvent dl.Information dt.Deadline + dd, .KkkoiEvent dl.Information dt.Term + dd {
           margin-left: 50px; }
-      /* line 506, /Users/yhori/workspace/python/django/mosi2map/static/sass/main.scss */
+      /* line 509, /Users/yhori/workspace/python/django/mosi2map/static/sass/main.scss */
       .KkkoiTop dl.Information dt.Deadline + dd input[type=text], .KkkoiConfirm dl.Information dt.Deadline + dd input[type=text], .KkkoiRegist dl.Information dt.Deadline + dd input[type=text], .KkkoiEvent dl.Information dt.Deadline + dd input[type=text] {
         width: 130px; }
-      /* line 513, /Users/yhori/workspace/python/django/mosi2map/static/sass/main.scss */
+      /* line 516, /Users/yhori/workspace/python/django/mosi2map/static/sass/main.scss */
       .KkkoiTop dl.Information dt.Targets + dd ul.Targets li input[type=email], .KkkoiConfirm dl.Information dt.Targets + dd ul.Targets li input[type=email], .KkkoiRegist dl.Information dt.Targets + dd ul.Targets li input[type=email], .KkkoiEvent dl.Information dt.Targets + dd ul.Targets li input[type=email] {
         width: 200px; }
-      /* line 519, /Users/yhori/workspace/python/django/mosi2map/static/sass/main.scss */
+      /* line 522, /Users/yhori/workspace/python/django/mosi2map/static/sass/main.scss */
       .KkkoiTop dl.Information dt.Confirm, .KkkoiConfirm dl.Information dt.Confirm, .KkkoiRegist dl.Information dt.Confirm, .KkkoiEvent dl.Information dt.Confirm {
         color: #aaa; }
-        /* line 523, /Users/yhori/workspace/python/django/mosi2map/static/sass/main.scss */
+        /* line 526, /Users/yhori/workspace/python/django/mosi2map/static/sass/main.scss */
         .KkkoiTop dl.Information dt.Confirm + dd:after, .KkkoiConfirm dl.Information dt.Confirm + dd:after, .KkkoiRegist dl.Information dt.Confirm + dd:after, .KkkoiEvent dl.Information dt.Confirm + dd:after {
           content: "";
           display: table;
           line-height: 0;
           clear: both; }
-        /* line 530, /Users/yhori/workspace/python/django/mosi2map/static/sass/main.scss */
+        /* line 533, /Users/yhori/workspace/python/django/mosi2map/static/sass/main.scss */
         .KkkoiTop dl.Information dt.Confirm.Message + dd, .KkkoiConfirm dl.Information dt.Confirm.Message + dd, .KkkoiRegist dl.Information dt.Confirm.Message + dd, .KkkoiEvent dl.Information dt.Confirm.Message + dd {
           padding: 10px;
           background-color: #fff;
@@ -554,27 +554,27 @@ textarea.field-with-error {
           -moz-border-radius: 5px;
           -ms-border-radius: 5px;
           border-radius: 5px; }
-  /* line 541, /Users/yhori/workspace/python/django/mosi2map/static/sass/main.scss */
+  /* line 544, /Users/yhori/workspace/python/django/mosi2map/static/sass/main.scss */
   .KkkoiEvent .ChatPostForm {
     position: relative;
     margin-bottom: 5px;
     width: 100%; }
-    /* line 545, /Users/yhori/workspace/python/django/mosi2map/static/sass/main.scss */
+    /* line 548, /Users/yhori/workspace/python/django/mosi2map/static/sass/main.scss */
     .KkkoiEvent .ChatPostForm input[type=text] {
       width: 100%; }
-    /* line 548, /Users/yhori/workspace/python/django/mosi2map/static/sass/main.scss */
+    /* line 551, /Users/yhori/workspace/python/django/mosi2map/static/sass/main.scss */
     .KkkoiEvent .ChatPostForm button {
       position: absolute;
       top: 0;
       right: 0;
       width: 40px; }
-  /* line 556, /Users/yhori/workspace/python/django/mosi2map/static/sass/main.scss */
+  /* line 559, /Users/yhori/workspace/python/django/mosi2map/static/sass/main.scss */
   .KkkoiEvent .Chat {
     width: 100%; }
-    /* line 558, /Users/yhori/workspace/python/django/mosi2map/static/sass/main.scss */
+    /* line 561, /Users/yhori/workspace/python/django/mosi2map/static/sass/main.scss */
     .KkkoiEvent .Chat .Subject {
       display: none; }
-    /* line 564, /Users/yhori/workspace/python/django/mosi2map/static/sass/main.scss */
+    /* line 567, /Users/yhori/workspace/python/django/mosi2map/static/sass/main.scss */
     .KkkoiEvent .Chat .ChatView ul#chatView {
       border: none;
       border-bottom: solid 2px #aaa;

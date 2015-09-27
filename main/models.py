@@ -1,6 +1,8 @@
 from django.db import models
 from django import forms
 from django.forms import ModelForm
+from swampdragon.models import SelfPublishModel
+from main.serializers import ChatSerializer
 
 HOUR_CHOICES = (
     ('-1', '--'),
@@ -36,7 +38,7 @@ class Event(models.Model):
     created_at = models.DateTimeField(auto_now = False, auto_now_add = True)
 
     def __str__(self):
-        return str(self.lat) + ' ' + str(self.lng)
+        return self.identifier;
 
 
     def getTermStr(self):
@@ -54,15 +56,6 @@ class Mlist(models.Model):
 
     def __str__(self):
         return self.mail
-
-
-class Chat(models.Model):
-    event = models.ForeignKey('Event')
-    message = models.CharField(max_length = 500)
-    created_at = models.DateTimeField(auto_now = False, auto_now_add = True)
-
-    def __str__(self):
-        return str(self.created_at) + ':' + self.message
 
 class EventForm(ModelForm):
     class Meta:
@@ -88,3 +81,19 @@ class MlistForm(ModelForm):
         model = Mlist
         fields = ['event', 'mail']
 
+class Chat(models.Model, SelfPublishModel):
+    event = models.ForeignKey('Event')
+    message = models.CharField(max_length = 500)
+    created_at = models.DateTimeField(auto_now = False, auto_now_add = True)
+    serializer_class = ChatSerializer
+
+    class Meta:
+        ordering = ["-created_at"]
+
+    def __str__(self):
+        return str(self.created_at) + ':' + self.message
+
+class Marker(SelfPublishModel):
+    lat = models.FloatField
+    lng = models.FloatField
+    
