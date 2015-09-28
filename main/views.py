@@ -46,10 +46,7 @@ def regist(request):
         targets.append(target)
             
     new_event = form.save(commit=False)
-    deadline = form['dlDate'].value()
-    if form['dlHour'].value() and form['dlMin'].value():
-        deadline += ' ' + form['dlHour'].value()  + ':' + form['dlMin'].value()
-    new_event.deadline = deadline
+    new_event.deadline = form.getDeadline()
     new_event.identifier = randStr(20)
     new_event.term = form['terms'].value()
     new_event.save()

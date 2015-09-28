@@ -76,6 +76,12 @@ class EventForm(ModelForm):
                 return term[1] 
         return None
 
+    def getDeadline(self):
+        if self['dlHour'].value() and self['dlMin'].value():
+            return self['dlDate'].value() + ' ' + self['dlHour'].value() + ':' + self['dlMin'].value()
+        else:
+            return self['dlDate'].value()
+        
 class MlistForm(ModelForm):
     class Meta:
         model = Mlist
