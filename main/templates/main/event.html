@@ -1,6 +1,9 @@
 {% extends "base.html" %}
 {% load range %}
 {% block title %}mosi2map イベントページ{% endblock title %}
+{% block my_js %}
+<script type="text/javascript" src="{{ STATIC_URL }}js/chat.js"></script>
+{% endblock my_js %}
 
 {% block content %}
 <section class="KkkoiEvent">

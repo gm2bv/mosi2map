@@ -34,7 +34,7 @@
     {% swampdragon_settings %}
     <script type="text/javascript" src="{% static 'swampdragon/js/dist/swampdragon.min.js' %}"></script>
     <script type="text/javascript" src="{{ STATIC_URL }}swampdragon/js/dist/datamapper.js"></script>
-    <script type="text/javascript" src="{% static 'js/main.js' %}"></script>
+    {% block my_js %}{{ my_js }}{% endblock %}
     <script>
       console.log(window.swampdragon_host);
     </script>
