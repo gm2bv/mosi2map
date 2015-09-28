@@ -1,10 +1,9 @@
 mosi2map
 ====
 
-=author=
-    gm2bv
-=mail=
-    gm2bv2001@gmail.com
+## author
+
+gm2bv<gm2bv2001@gmail.com>
 
 ## TODO
 
