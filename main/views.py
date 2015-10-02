@@ -5,6 +5,7 @@ from datetime import datetime, timedelta
 from django.utils.timezone import utc
 import re
 import random
+from main.webmail import webmail
 
 def index(request):
     form = EventForm()
@@ -51,10 +52,15 @@ def regist(request):
     new_event.term = form['terms'].value()
     new_event.save()
 
+    wmail = webmail(new_event)
+
     for mail in request.POST.getlist('mail'):
         target = MlistForm({'mail':mail, 'event':new_event.pk}, auto_id = False)
         target.save()
-                    
+        wmail.add_to(mail)
+
+    wmail.send()
+    
     return HttpResponseRedirect('/main/event/' + new_event.identifier)
 
 def randStr(size):

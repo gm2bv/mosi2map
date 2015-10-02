@@ -21,7 +21,7 @@ SECRET_KEY = '************************'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
-
+MAIL_DEBUG = True
 TEMPLATE_DEBUG = True
 
 ALLOWED_HOSTS = []
@@ -90,3 +90,9 @@ STATICFILES_DIRS = (
 SASS_PROCESSOR_ROOT = 'static'
 DRAGON_URL = 'http://localhost:9999/'
 SWAMP_DRAGON_CONNECTION = ('swampdragon.connections.sockjs_connection.DjangoSubscriberConnection', '/data')
+
+SENDGRID_USER = '****'
+SENDGRID_PASS = '****'
+MAIL_FROM     = '*****@****'
+SITE_URL      = "http://******"
+SITE_NAME     = "mosi2map"
