@@ -167,14 +167,6 @@ textarea.field-with-error{
                 @include round-corner(5px);
             }
         }
-        dt.Term{
-            float: left;
-            width: 60px;
-            +dd{
-                margin-left: 60px;
-            }
-
-        }
         dt.Targets {
             float: left;
             width: 60px;
@@ -212,7 +204,7 @@ textarea.field-with-error{
             }
         } // dt.Targets
         dd.Ctrl{
-            input[type=submit]{
+            button, input[type=submit]{
                 width: 100%;
                 @include button-look();
                 padding: 5px;
@@ -311,12 +303,10 @@ textarea.field-with-error{
             margin-bottom: 0;
             
             dt.Deadline +dd{
-                input{
-                    width: 200px - $margin-wd;
+                input[type=text]{
+                    width: 400px - $margin-wd;
                     margin-right: $margin-s;
-                }
-                select{
-                    width: 60px;
+                    margin-bottom: $margin-s;
                 }
             }
             dt.Confirm{
@@ -499,7 +489,7 @@ textarea.field-with-error{
             dd{
                 margin-bottom: 5px;
             }
-            dt.Targets, dt.Deadline, dt.Term{
+            dt.Targets, dt.Deadline{
                 width: $margin-wd * 5;
                 +dd{
                     margin-left: $margin-wd * 5;

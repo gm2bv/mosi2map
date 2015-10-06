@@ -25,9 +25,11 @@
   
   <dl class="Information TabPage" id="information">
     <dt class="Deadline Confirm">日時</dt>
-    <dd>{{ event.deadline|date:"Y年m月d日 H時i分" }}</dd>
-    <dt class="Term Confirm">時間</dt>
-    <dd>{{ event.getTermStr }}</dd>
+    <dd>{{ event.deadline|date:"Y年m月d日 H時i分" }}
+      {% if event.term == 0 %} {{ event.getTermStr }}
+      {% else %} (〜{{ event.getTermStr }})
+      {% endif %}
+    </dd>
     <dt class="Targets Confirm">通知先</dt>
     <dd>
       <ul class="Targets">

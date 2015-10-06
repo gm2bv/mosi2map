@@ -21,16 +21,13 @@
     </div>
   </div> <!-- MapBlock -->
 
-  <form action="{% url 'confirm' %}" id="notifyForm" class="NotifyForm" method="post">
+  <form action="{% url 'regist' %}" id="notifyForm" class="NotifyForm" method="post">
     {% csrf_token %}
-  <dl class="Information">
+  <dl class="Information" id="inputForm">
     <dt class="Deadline">日時</dt>
     <dd>
-      {{ form.dlDate }}{{ form.dlHour }}：{{ form.dlMin }}
-    </dd>
-    <dt class="Term">時間</dt>
-    <dd>
-      {{ form.terms }}
+      {{ form.dlDate }}<br>
+      {{ form.dlHour }}：{{ form.dlMin }}&emsp;{{ form.terms }}
     </dd>
     <dt class="Targets">通知先</dt>
     <dd>
@@ -49,10 +46,27 @@
       {{ form.message }}
     </dd>
     <dd class="Ctrl">
-      <input type="submit" value='投稿' onClick='return takeMarker()'>
+      <button class="Confirm" id="confirmBtn">確認</button>
     </dd>
   </dl>
+
+  <dl class="Confirm Information" id="confirmForm" style="display:none;">
+    <dt class="Deadline Confirm">日時</dt>
+    <dd></dd>
+    <dt class="Targets Confirm">通知先</dt>
+    <dd>
+      <ul class="Targets"></ul>
+    </dd>
+    <dt class="Message Confirm">メッセージ</dt>
+    <dd></dd>
+    <dd class="Ctrl">
+      <input type="submit" name="regist" value="投稿" onClick='return takeMarker()'>
+      <button class="Cancel" id="cancelBtn">やりなおす</button>
+    </dd>
+  </dl>
+
   </form>
+  
 </section>
 {% endblock %}
 

@@ -18,23 +18,7 @@ def index(request):
     }
     return render(request, 'main/index.html', context)
 
-def confirm(request):
-    form = EventForm(request.POST)
-
-    targets = []
-    for mail in request.POST.getlist('mail'):
-        targets.append(MlistForm({'mail':mail}, auto_id = False))
-        
-    context = {
-        'form' : form,
-        'targets': targets,
-    }
-    return render(request, 'main/confirm.html', context)
-
-def regist(request):
-    if 'cancel' in request.POST:        
-        return HttpResponseRedirect('/main/')
-    
+def regist(request):    
     form = EventForm(request.POST)
     if not form.is_valid():
         print(form.errors)
