@@ -20,22 +20,24 @@
       <div id="map_canvas" {% if form.lat.value and form.lng.value %}data-lat="{{ form.lat.value }}" data-lng="{{ form.lng.value }}"{% endif %}></div>
     </div>
   </div> <!-- MapBlock -->
-
+  
   <form action="{% url 'regist' %}" id="notifyForm" class="NotifyForm" method="post">
     {% csrf_token %}
+
   <dl class="Information" id="inputForm">
     <dt class="Deadline">日時</dt>
     <dd>
       {{ form.dlDate }}<br>
       {{ form.dlHour }}：{{ form.dlMin }}&emsp;{{ form.terms }}
+      {{ form.dlDate.errors }}
     </dd>
     <dt class="Targets">通知先</dt>
     <dd>
       <ul id="targets" class="Targets">
         {% for target in targets %}
         <li>
-          {{ target.mail }}
-          {% if forloop.counter0 != 0 %}<button class="DelMail">Del</button>{% endif %}
+          {{ target.mail }}{{ target.mail.errors }}
+          {% if forloop.counter0 != 0 %}<button class="DelMail"><span class="typcn typcn-delete"></span></button>{% endif %}
         </li>
         {% endfor %}
         <li class="Ctrl"><button id="addTarget"><span class="typcn typcn-plus"></span>通知先追加</button></li>

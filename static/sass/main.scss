@@ -41,6 +41,13 @@ body{
     height: 100%;
 }
 
+ul.errorlist{
+    list-style: none;
+    font-size: 10pt;
+    margin: $margin-s 0 $margin-wd;
+    color: #f00;
+}
+
 label.field-with-error{
     color: #f00;
 }
@@ -175,7 +182,7 @@ textarea.field-with-error{
                 ul.Targets{
                     list-style: none;
                     li{
-                        margin-bottom: 0;
+                        margin-bottom: $margin-s;
                         &:last-child{
                             margin-bottom: 0;
                         }
@@ -189,7 +196,7 @@ textarea.field-with-error{
                         input[type=email]{
                             @include round-corner($radius-wd);
                             border-color: $border-clr;
-                            width: 300px;
+                            width: 290px;
                             +button.DelMail{
                                 width: 28px;
                                 font-size: 14pt;
@@ -375,9 +382,6 @@ textarea.field-with-error{
             dt.Deadline +dd{
                 input{
                     width: 200px;
-                }
-                select{
-                    width: 60px;
                 }
             }
             dt.Confirm{

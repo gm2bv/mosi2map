@@ -1,14 +1,16 @@
-from django.shortcuts import get_object_or_404, render
+from django.shortcuts import get_object_or_404, render, redirect, render_to_response
 from django.http import HttpResponseRedirect, HttpResponse, Http404
 from main.models import Event, Mlist, Chat, EventForm, MlistForm
 from datetime import datetime, timedelta
 from django.utils.timezone import utc
-import re
-import random
 from main.webmail import webmail
+from django.db import transaction
+import logging
 
 def index(request):
     form = EventForm()
+    form.full_clean()
+    
     targets = []
     targets.append(MlistForm(auto_id = False))
 
@@ -18,41 +20,50 @@ def index(request):
     }
     return render(request, 'main/index.html', context)
 
-def regist(request):    
-    form = EventForm(request.POST)
-    if not form.is_valid():
-        print(form.errors)
+@transaction.commit_manually
+def regist(request):
+    logger = logging.getLogger('main.views')
 
-    targets = []
-    for mail in request.POST.getlist('mail'):
-        target = MlistForm({'mail':mail}, auto_id = False)
-        if not target.is_valid():
-            print(target.errors)
-        targets.append(target)
-            
-    new_event = form.save(commit=False)
-    new_event.deadline = form.getDeadline()
-    new_event.identifier = randStr(20)
-    new_event.term = form['terms'].value()
-    new_event.save()
-
-    wmail = webmail(new_event)
-
-    for mail in request.POST.getlist('mail'):
-        target = MlistForm({'mail':mail, 'event':new_event.pk}, auto_id = False)
-        target.save()
-        wmail.add_to(mail)
-
-    wmail.send()
+    commitFlg = True
+    new_event = None
+    wmail     = None
+    form      = EventForm(request.POST)
+    if form.is_valid():
+        new_event = form.save()
+        wmail = webmail(new_event)
+    else:
+        commitFlg = False
     
-    return HttpResponseRedirect('/main/event/' + new_event.identifier)
+    targets = []
+    for (i, mail) in enumerate(request.POST.getlist('mail')):
+        if len(mail) == 0:
+            continue
+        
+        target = MlistForm({'mail':mail, 'event':new_event.pk}, auto_id = False) if new_event else MlistForm({'mail':mail, 'event': None}, auto_id = False)
+        
+        if target.is_valid():
+            target.save()
+            wmail.add_to(mail)
+        else:
+            commitFlg = False
+        targets.append(target)
+    else:
+        if len(targets) == 0:
+            target = MlistForm({'mail': None, 'event': None}, auto_id = False)
+            targets.append(target)
+            commitFlg = False
+        
 
-def randStr(size):
-    seed = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJLKMNOPQRSTUVWXYZ0123456789"
-    ret = ""
-    for i in range(size):
-        ret += random.choice(seed)
-    return ret
+    if not commitFlg or len(targets) == 0:
+        transaction.rollback()
+        return render(request, 'main/index.html', {
+            'form'   : form,
+            'targets': targets
+        })
+
+    transaction.commit()
+    wmail.send()
+    return HttpResponseRedirect('/main/event/' + new_event.identifier)
     
 def event(request, event_id):
     try:
